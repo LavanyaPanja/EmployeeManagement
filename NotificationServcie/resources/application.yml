@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      name: commonyml,NOTIFICATION-SERVICE
+      uri: http://localhost:8888/
+  application:
+    name: NOTIFICATION-SERVICE
+server:
+  port: '8094'
