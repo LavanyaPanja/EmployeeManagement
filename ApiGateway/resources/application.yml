@@ -1,0 +1,45 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  tracing:
+    sampling:
+      probability: '1.0'
+spring:
+  cloud:
+    gateway:
+      routes[2]:
+        uri: lb://EXPENSES-SERVICE
+        id: EXPENSES-SERVICE
+        predicates[0]: Path=/expenses/**
+      routes[0]:
+        id: EMPLOYEE-SERVICE
+        uri: lb://EMPLOYEE-SERVICE
+        predicates[0]: Path=/employee/**
+      routes[5]:
+        uri: lb://PAYMENT-SERVICE
+        id: PAYMENT-SERVICE
+        predicates[0]: Path=/payment/**
+      routes[3]:
+        id: LEAVES-SERVICE
+        predicates[0]: Path=/leaves/**
+        uri: lb://LEAVES-SERVICE
+      routes[1]:
+        id: SECURITY-SERVICE
+        predicates[0]: Path=/security/**
+        uri: lb://SECURITY-SERVICE
+      routes[4]:
+        uri: lb://NOTIFICATION-SERVICE
+        id: NOTIFICATION-SERVICE
+        predicates[0]: Path=/notification/**
+  application:
+    name: API-GATEWAY
+eureka:
+  instance:
+    prefer-ip-address: 'true'
+    client:
+      serverUrl:
+        defaultZone: http://localhost:8761/eureka/
+server:
+  port: '9191'
