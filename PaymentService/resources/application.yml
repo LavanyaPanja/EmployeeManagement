@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      name: commonyml,PAYMENT-SERVICE
+      uri: http://localhost:8888/
+  application:
+    name: PAYMENT-SERVICE
+server:
+  port: '8093'
