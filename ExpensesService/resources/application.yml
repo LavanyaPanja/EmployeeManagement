@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      name: commonyml,EXPENSES-SERVICE
+      uri: http://localhost:8888/
+  application:
+    name: EXPENSES-SERVICE
+server:
+  port: '8091'
